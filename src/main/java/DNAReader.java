@@ -18,7 +18,7 @@ public class DNAReader {
             String line;
             while((line = reader.readLine()) != null) {
                 for (int i = 0; i < line.length(); i++) {
-                    if (queue.size() >= countOfPortions) {
+                    if (queue.size() == countOfPortions) {
                         portions.add(buildPortion(queue));
                         queue.poll();
                     }

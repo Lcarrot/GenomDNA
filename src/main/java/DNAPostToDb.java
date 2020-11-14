@@ -75,14 +75,14 @@ public class DNAPostToDb {
     }
 
     //language=SQL
-    String SELECT3 = "select (select count(min_count)\n" +
+    String SELECT3 = "select (select sum(min_count)\n" +
             "        from (\n" +
-            "                 select t, 2*min(count) as min_count, count(id) as c_id\n" +
+            "                 select t, 2*min(count) as min_count, count(id) as count_id\n" +
             "                 from (select id, t, count(*) as count from dna3 where id = :id1 or id = :id2 group by id, t)\n" +
             "                          as it2c\n" +
-            "                 group by t)\n" +
-            "                 as t2m where c_id > 1) /\n" +
-            "(select count(*) from dna3 where id = :id1 or id = :id2)::float as Coincidences;";
+            "                group by t)\n" +
+            "                 as t2m where count_id > 1) /\n" +
+            "       (select count(*) from dna3 where id = :id1 or id = :id2)::float as coincidences;";
 
     public Float getPerCentOfCoincidencesFor3(Integer id1, Integer id2) {
         try (Connection connection = sql2o.open()) {
@@ -93,14 +93,14 @@ public class DNAPostToDb {
     }
 
     //language=SQL
-    String SELECT5 = "select (select count(min_count)\n" +
+    String SELECT5 = "select (select sum(min_count)\n" +
             "        from (\n" +
-            "                 select t, 2*min(count) as min_count, count(id) as c_id\n" +
+            "                 select t, 2*min(count) as min_count, count(id) as count_id\n" +
             "                 from (select id, t, count(*) as count from dna5 where id = :id1 or id = :id2 group by id, t)\n" +
             "                          as it2c\n" +
-            "                 group by t)\n" +
-            "                 as t2m where c_id > 1) /\n" +
-            "(select count(*) from dna5 where id = :id1 or id = :id2)::float as Coincidences;";
+            "                group by t)\n" +
+            "                 as t2m where count_id > 1) /\n" +
+            "       (select count(*) from dna5 where id = :id1 or id = :id2)::float as coincidences;";
 
     public Float getPerCentOfCoincidencesFor5(Integer id1, Integer id2) {
         try (Connection connection = sql2o.open()) {
@@ -111,14 +111,14 @@ public class DNAPostToDb {
     }
 
     //language=SQL
-    String SELECT9 = "select (select count(min_count)\n" +
+    String SELECT9 = "select (select sum(min_count)\n" +
             "        from (\n" +
-            "                 select t, 2*min(count) as min_count, count(id) as c_id\n" +
+            "                 select t, 2*min(count) as min_count, count(id) as count_id\n" +
             "                 from (select id, t, count(*) as count from dna9 where id = :id1 or id = :id2 group by id, t)\n" +
             "                          as it2c\n" +
-            "                 group by t)\n" +
-            "                 as t2m where c_id > 1) /\n" +
-            "(select count(*) from dna9 where id = :id1 or id = :id2)::float as Coincidences;";
+            "                group by t)\n" +
+            "                 as t2m where count_id > 1) /\n" +
+            "       (select count(*) from dna9 where id = :id1 or id = :id2)::float as coincidences;";
 
     public Float getPerCentOfCoincidencesFor9(Integer id1, Integer id2) {
         try (Connection connection = sql2o.open()) {
