@@ -5,9 +5,7 @@ import org.sql2o.Sql2o;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 public class DNAPostToDb {
